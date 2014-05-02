@@ -1,0 +1,8 @@
+name = FBA Geo Vocab Solution Pack
+description = A custom FBA Module to initialise Geo/Vocab forms/collections etc
+dependencies[] = fedora_repository
+package = FBA Solution Pack
+version = 6.x-13.1
+core = 6.x
+dependencies[] = fedora_repository
+dependencies[] = fba_vocab_sp
