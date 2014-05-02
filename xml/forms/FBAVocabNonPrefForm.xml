@@ -1,0 +1,261 @@
+<?xml version="1.0"?>
+<definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2">
+    <properties>
+        <root_name>mads</root_name>
+        <schema_uri>http://www.loc.gov/standards/mads/mads.xsd</schema_uri>
+        <namespaces default="http://www.loc.gov/mads/v2">
+            <namespace prefix="xlink">http://www.w3.org/1999/xlink</namespace>
+            <namespace prefix="xsi">http://www.w3.org/2001/XMLSchema-instance</namespace>
+            <namespace prefix="mads">http://www.loc.gov/mads/v2</namespace>
+        </namespaces>
+    </properties>
+    <form>
+        <properties>
+            <type>form</type>
+            <access>TRUE</access>
+            <required>FALSE</required>
+            <tree>TRUE</tree>
+        </properties>
+        <children>
+            <element name="variant">
+                <properties>
+                    <type>markup</type>
+                    <access>TRUE</access>
+                    <required>FALSE</required>
+                    <title>Variant Form of Name</title>
+                    <tree>TRUE</tree>
+                    <actions>
+                        <create>
+                            <path>/mads:mads</path>
+                            <context>document</context>
+                            <schema/>
+                            <type>xml</type>
+                            <prefix>NULL</prefix>
+                            <value>&lt;variant&gt;%value%&lt;/variant&gt;</value>
+                        </create>
+                        <read>
+                            <path>/mads:mads/mads:variant</path>
+                            <context>document</context>
+                        </read>
+                        <update>
+                            <path>self::node()</path>
+                            <context>self</context>
+                        </update>
+                        <delete>NULL</delete>
+                    </actions>
+                </properties>
+                <children>
+                    <element name="topic">
+                        <properties>
+                            <type>textfield</type>
+                            <access>TRUE</access>
+                            <required>FALSE</required>
+                            <title>Term</title>
+                            <tree>TRUE</tree>
+                            <actions>
+                                <create>
+                                    <path>/mads:mads/mads:variant</path>
+                                    <context>document</context>
+                                    <schema/>
+                                    <type>element</type>
+                                    <prefix>mads</prefix>
+                                    <value>mads:topic</value>
+                                </create>
+                                <read>
+                                    <path>/mads:mads/mads:variant/mads:topic</path>
+                                    <context>document</context>
+                                </read>
+                                <update>
+                                    <path>self::node()</path>
+                                    <context>self</context>
+                                </update>
+                                <delete>
+                                    <path>self::node()</path>
+                                    <context>self</context>
+                                </delete>
+                            </actions>
+                        </properties>
+                        <children/>
+                    </element>
+                </children>
+            </element>
+            <element name="use">
+                <properties>
+                    <type>textfield</type>
+                    <access>TRUE</access>
+                    <autocomplete_path>autocomplete/sp_ol_xxxx_npvocab_mads_use_pvocab_mads_usedfor</autocomplete_path>
+                    <required>FALSE</required>
+                    <title>Use Term</title>
+                    <tree>TRUE</tree>
+                    <actions>
+                        <create>
+                            <path>/mads:mads</path>
+                            <context>document</context>
+                            <schema/>
+                            <type>xml</type>
+                            <prefix>NULL</prefix>
+                            <value>&lt;mads:related otherType="use" type="other" &gt;&lt;mads:topic&gt;%value%&lt;/mads:topic&gt;&lt;/mads:related&gt;</value>
+                        </create>
+                        <read>
+                            <path>/mads:mads/mads:related[@otherType="use" and @type="other"]/mads:topic</path>
+                            <context>document</context>
+                        </read>
+                        <update>
+                            <path>self::node()</path>
+                            <context>self</context>
+                        </update>
+                        <delete>
+                            <path>self::node()</path>
+                            <context>self</context>
+                        </delete>
+                    </actions>
+                </properties>
+                <children/>
+            </element>
+            <element name="noteApprovedDateDropdown">
+                <properties>
+                    <type>date</type>
+                    <access>TRUE</access>
+                    <required>FALSE</required>
+                    <title>Approved Date</title>
+                    <tree>TRUE</tree>
+                </properties>
+                <children/>
+            </element>
+            <element name="noteApprovedDate">
+                <properties>
+                    <type>hidden</type>
+                    <access>TRUE</access>
+                    <required>FALSE</required>
+                    <title>Approved Date</title>
+                    <tree>TRUE</tree>
+                    <actions>
+                        <create>
+                            <path>/mads:mads</path>
+                            <context>document</context>
+                            <schema/>
+                            <type>xml</type>
+                            <prefix>NULL</prefix>
+                            <value>&lt;mads:note type="approved
+                                date"&gt;%value%&lt;/mads:note&gt;
+                            </value>
+                        </create>
+                        <read>
+                            <path>/mads:mads/mads:note[@type="approved date"]</path>
+                            <context>document</context>
+                        </read>
+                        <update>
+                            <path>self::node()</path>
+                            <context>self</context>
+                        </update>
+                        <delete>
+                            <path>self::node()</path>
+                            <context>self</context>
+                        </delete>
+                    </actions>
+                </properties>
+                <children/>
+            </element>
+            <element name="recordInfo">
+                <properties>
+                    <type>fieldset</type>
+                    <access>TRUE</access>
+                    <required>FALSE</required>
+                    <tree>TRUE</tree>
+                    <actions>
+                        <create>
+                            <path>/mads:mads</path>
+                            <context>document</context>
+                            <schema/>
+                            <type>element</type>
+                            <prefix>mads</prefix>
+                            <value>mads:recordInfo</value>
+                        </create>
+                        <read>
+                            <path>/mads:mads/mads:recordInfo</path>
+                            <context>document</context>
+                        </read>
+                        <update>NULL</update>
+                        <delete>NULL</delete>
+                    </actions>
+                </properties>
+                <children>
+                    <element name="recordInputDate">
+                        <properties>
+                            <type>hidden</type>
+                            <access>TRUE</access>
+                            <required>FALSE</required>
+                            <title>Term Input Date</title>
+                            <tree>TRUE</tree>
+                            <actions>
+                                <create>
+                                    <path>/mads:mads/mads:recordInfo</path>
+                                    <context>document</context>
+                                    <schema/>
+                                    <type>element</type>
+                                    <prefix>mads</prefix>
+                                    <value>mads:recordCreationDate</value>
+                                </create>
+                                <read>
+                                    <path>/mads:mads/mads:recordInfo/mads:recordCreationDate</path>
+                                    <context>document</context>
+                                </read>
+                                <update>
+                                    <path>self::node()</path>
+                                    <context>self</context>
+                                </update>
+                                <delete>
+                                    <path>self::node()</path>
+                                    <context>self</context>
+                                </delete>
+                            </actions>
+                        </properties>
+                        <children/>
+                    </element>
+                    <element name="recordChangeDate">
+                        <properties>
+                            <type>hidden</type>
+                            <access>TRUE</access>
+                            <required>FALSE</required>
+                            <title>Term Change Date</title>
+                            <tree>TRUE</tree>
+                            <actions>
+                                <create>
+                                    <path>/mads:mads/mads:recordInfo</path>
+                                    <context>document</context>
+                                    <schema/>
+                                    <type>element</type>
+                                    <prefix>mads</prefix>
+                                    <value>mads:recordChangeDate</value>
+                                </create>
+                                <read>
+                                    <path>/mads:mads/mads:recordInfo/mads:recordChangeDate</path>
+                                    <context>document</context>
+                                </read>
+                                <update>
+                                    <path>self::node()</path>
+                                    <context>self</context>
+                                </update>
+                                <delete>
+                                    <path>self::node()</path>
+                                    <context>self</context>
+                                </delete>
+                            </actions>
+                        </properties>
+                        <children/>
+                    </element>
+                </children>
+            </element>
+            <element name="submit">
+                <properties>
+                    <type>submit</type>
+                    <access>TRUE</access>
+                    <default_value>Submit</default_value>
+                    <required>FALSE</required>
+                    <tree>TRUE</tree>
+                </properties>
+                <children/>
+            </element>
+        </children>
+    </form>
+</definition>

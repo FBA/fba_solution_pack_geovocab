@@ -1,0 +1,21 @@
+
+<content_model xmlns="http://www.islandora.ca" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               name="FBA Geo Non-preferred Term Content Model"
+               xsi:schemaLocation="http://www.islandora.ca http://localhost/islandoracm.xsd">
+    <mimetypes>
+    </mimetypes>
+    <ingest_rules>
+        <rule>
+            <ingest_methods>
+            </ingest_methods>
+        </rule>
+    </ingest_rules>
+    <datastreams>
+        <datastream dsid="TN"/>
+        <datastream dsid="MADS">
+            <display_method class="FBAVocabSolutionPack"
+                            file="vocab_obj_process.inc" method="showGeoFormattedObjectDetail"
+                            module="fba_vocab_sp"/>
+        </datastream>
+    </datastreams>
+</content_model>

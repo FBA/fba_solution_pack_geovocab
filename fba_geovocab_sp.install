@@ -1,0 +1,38 @@
+<?php
+
+function fba_geovocab_sp_enable() {
+  module_load_include('inc', 'fedora_repository', 'api/fedora_item');
+  module_load_include('inc', 'fedora_repository', 'api/fedora_utils');
+  if (!fedora_available()) {
+    drupal_set_message(t('Fedora instance is not currently available.  Installation must be verified and completed on the Islandora Configuration page.'));
+  }
+  else {
+    $solution_pack_info = fba_geovocab_sp_required_fedora_objects();
+
+    $batch = array(
+      'title' => t('Installing FBA GeoVocab Solutionpack objects'),
+      'file' => drupal_get_path('module', 'fedora_repository') . '/fedora_repository.module',
+      'operations' => array(),
+    );
+
+    foreach ($solution_pack_info['fba_geovocab_sp']['objects'] as $object) {
+      // Add this object to the batch job queue.
+      $collectionpid = $object['pid'];
+      $item = new Fedora_Item($collectionpid);
+      if (!$item->exists()) {
+        $batch['operations'][] = array('fedora_repository_batch_reingest_object', array($object));
+      }
+    }
+    // If there's any operations to perform
+    if (count($batch['operations'])) {
+
+      // Add the batch to be processed
+      batch_set($batch);
+
+      // Start processing, if required
+      if (!batch_get()) {
+        batch_process();
+      }
+    }
+  }
+}
