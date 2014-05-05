@@ -36,9 +36,7 @@
                     <ingest_rules>
                         <rule/>
                     </ingest_rules>
-                    <datastreams>
-                        <datastream dsid="TN"/>
-                    </datastreams>
+                    <datastreams/>
                 </content_model>
             </foxml:xmlContent>
         </foxml:datastreamVersion>
